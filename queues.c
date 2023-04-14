@@ -59,7 +59,7 @@ Queue* NewStack(Document firstValue) {
 void push(Queue* queue, Document value) {
     Node* node = NewNode(value);
     node->next = queue->first;
-    queue->last = node;
+    queue->first = node;
     queue->size++;
 }
 
@@ -92,15 +92,17 @@ Document printInfo(Document n) {
         " * \t Name: \t %s \n"
         " * \t Author: \t %s \n"
         " * \t Genre: \t %s \n"
-        " * \t Editorial: \t\t %s \n"
-        " * \t Copies: \t\t %i GiB\n"
-        " * \t Printer target: \t %s\n"        
+        " * \t Editorial: \t\t%s \n"
+        " * \t Copies: \t\t%i \n"
+        " * \t Printer target: %s\n"        
         " * \t Launch Year: \t %i \n"               
-        " * \t Print type: %s \n"
+        " * \t Print type: \t %s \n"
+        " * \t N# of Pages:\t %i \n"
         "#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&#&\n"
         ,n.name, n.author, n.genre, n.editorial, n.copies, n.printer, n.launchYear
-        , n.pages, n.isColored ? "Colored" : "Grayscale"
+        , n.isColored ? "Colored" : "Grayscale", n.pages
         );
+
     return n;
 }
 
