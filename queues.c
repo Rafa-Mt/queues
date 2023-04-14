@@ -58,16 +58,18 @@ Queue* NewStack(Document firstValue) {
 
 void push(Queue* queue, Document value) {
     Node* node = NewNode(value);
-    node->next = queue->first;
-    queue->first = node;
+    queue->last->next = node;
+    queue->last = node;
     queue->size++;
 }
 
-void pop(Queue* queue) {
+Document pop(Queue* queue) {
     Node* erased = queue->first;
     queue->first = erased->next;
+    Document content = erased->content;
     free(erased);
     queue->size--;
+    return content;
 }
 
 void iterateQueue(Queue* queue, Document (*function)(Document)) {
@@ -92,8 +94,8 @@ Document printInfo(Document n) {
         " * \t Name: \t %s \n"
         " * \t Author: \t %s \n"
         " * \t Genre: \t %s \n"
-        " * \t Editorial: \t\t%s \n"
-        " * \t Copies: \t\t%i \n"
+        " * \t Editorial: \t %s \n"
+        " * \t Copies: \t %i \n"
         " * \t Printer target: %s\n"        
         " * \t Launch Year: \t %i \n"               
         " * \t Print type: \t %s \n"
